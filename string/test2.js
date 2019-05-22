@@ -22,3 +22,26 @@ var countBinarySubstring = function(s) {
 
 let str = "00110011";
 console.log(countBinarySubstring(str));
+
+// 其他方法
+var countBinarySubstring1 = function(s) {
+  let arr = [];
+  let matchs = (str) => {
+    let j = str.match(/^(0+|1+)/)[0];
+    let o = (j[0]^1).toString().repeat(j.length);
+    let q = j+o;
+    if(str.startsWith(q)){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  for(var i=0; i<str.length-1; i++){
+    var sub = matchs(str.slice(i));
+    if(sub){
+      arr.push(sub)
+    }
+  }
+  return arr.length
+}
+console.log(countBinarySubstring1(str));
